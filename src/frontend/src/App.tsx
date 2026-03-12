@@ -64,19 +64,19 @@ function AppContent() {
               className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg gap-2 rounded-full px-6"
             >
               <Plus className="w-4 h-4" />
-              Apni ID Share Karo
+              Share Your ID
             </Button>
           </div>
           {/* Hero text */}
           <div className="mt-8 mb-2">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white leading-tight">
-              Aas Paas ki
+              Nearby
               <br />
               <span className="text-white/80">Instagram IDs</span>
             </h2>
             <p className="mt-2 text-white/70 text-sm max-w-md">
-              Apni community ke logo se connect karo — voluntarily share karo
-              aur doosron ko dhundho.
+              Connect with people in your community — voluntarily share your ID
+              and discover others.
             </p>
           </div>
         </div>
@@ -93,7 +93,7 @@ function AppContent() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             data-ocid="entries.search_input"
-            placeholder="Naam ya username se search karo..."
+            placeholder="Search by name or username..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9 rounded-full border-border"
@@ -152,19 +152,19 @@ function AppContent() {
               <Instagram className="w-10 h-10 text-white" />
             </div>
             <h3 className="font-display text-xl font-bold text-foreground mb-2">
-              Koi ID nahi mili
+              No IDs found
             </h3>
             <p className="text-muted-foreground text-sm mb-6">
               {entries.length === 0
-                ? "Pehle aap apni Instagram ID share karo!"
-                : "Is area mein koi nahi mila. Filter badlo."}
+                ? "Be the first to share your Instagram ID!"
+                : "No one found in this area. Try changing the filter."}
             </p>
             <Button
               type="button"
               onClick={() => setShareOpen(true)}
               className="insta-gradient text-white rounded-full px-6 border-0"
             >
-              <Plus className="w-4 h-4 mr-2" /> Abhi Share Karo
+              <Plus className="w-4 h-4 mr-2" /> Share Now
             </Button>
           </motion.div>
         )}

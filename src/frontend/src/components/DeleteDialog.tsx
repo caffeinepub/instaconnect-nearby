@@ -32,16 +32,16 @@ export default function DeleteDialog({
 
   const handleDelete = async () => {
     if (pin.length !== 4) {
-      toast.error("4 digit PIN daalo");
+      toast.error("Please enter a 4-digit PIN");
       return;
     }
     try {
       await mutateAsync({ id: entryId, pin: BigInt(pin) });
-      toast.success(`${entryName} ki ID hata di gayi`);
+      toast.success(`${entryName}'s ID has been removed`);
       setPin("");
       onOpenChange(false);
     } catch {
-      toast.error("Galat PIN! Dobara try karo.");
+      toast.error("Wrong PIN! Please try again.");
     }
   };
 
@@ -53,11 +53,11 @@ export default function DeleteDialog({
       >
         <AlertDialogHeader>
           <AlertDialogTitle className="font-display">
-            Entry Delete Karo?
+            Delete Entry?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <strong>{entryName}</strong> ki Instagram ID hatane ke liye apna PIN
-            daalo.
+            Enter your PIN to remove <strong>{entryName}</strong>'s Instagram
+            ID.
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -92,7 +92,7 @@ export default function DeleteDialog({
               onOpenChange(false);
             }}
           >
-            Ruko
+            Cancel
           </Button>
           <Button
             data-ocid="delete.confirm_button"
@@ -104,7 +104,7 @@ export default function DeleteDialog({
             {isPending ? (
               <Loader2 className="w-4 h-4 animate-spin mr-2" />
             ) : null}
-            {isPending ? "Hata raha hai..." : "Haan, Hatao"}
+            {isPending ? "Deleting..." : "Yes, Delete"}
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

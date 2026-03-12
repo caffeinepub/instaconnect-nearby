@@ -57,7 +57,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
       !finalArea.trim() ||
       pin.length !== 4
     ) {
-      toast.error("Sab fields sahi se bharo, PIN 4 digits ka hona chahiye");
+      toast.error("Please fill all fields correctly. PIN must be 4 digits.");
       return;
     }
     try {
@@ -67,7 +67,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
         area: finalArea.trim(),
         pin: BigInt(pin),
       });
-      toast.success("Instagram ID share ho gayi! 🎉");
+      toast.success("Instagram ID shared successfully! 🎉");
       setName("");
       setUsername("");
       setArea("");
@@ -75,7 +75,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
       setPin("");
       onOpenChange(false);
     } catch {
-      toast.error("Kuch galat hua, dobara try karo");
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
@@ -92,10 +92,10 @@ export default function ShareModal({ open, onOpenChange }: Props) {
             </div>
             <div>
               <DialogTitle className="font-display text-lg">
-                Apni Instagram ID Share Karo
+                Share Your Instagram ID
               </DialogTitle>
               <DialogDescription className="text-xs">
-                Community ke saath voluntarily share karo
+                Voluntarily share with the community
               </DialogDescription>
             </div>
           </div>
@@ -108,12 +108,12 @@ export default function ShareModal({ open, onOpenChange }: Props) {
               htmlFor="share-name"
               className="flex items-center gap-1.5 text-sm font-medium"
             >
-              <User className="w-3.5 h-3.5" /> Aapka Naam
+              <User className="w-3.5 h-3.5" /> Your Name
             </Label>
             <Input
               id="share-name"
               data-ocid="share.name_input"
-              placeholder="Jaise: Rahul Sharma"
+              placeholder="e.g. Rahul Sharma"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -135,7 +135,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
               <Input
                 id="share-username"
                 data-ocid="share.username_input"
-                placeholder="username (@ ke bina)"
+                placeholder="username (without @)"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="pl-7"
@@ -147,11 +147,11 @@ export default function ShareModal({ open, onOpenChange }: Props) {
           {/* Area */}
           <div className="space-y-1.5">
             <Label className="flex items-center gap-1.5 text-sm font-medium">
-              <MapPin className="w-3.5 h-3.5" /> Aapka Shehar
+              <MapPin className="w-3.5 h-3.5" /> Your City
             </Label>
             <Select value={area} onValueChange={setArea}>
               <SelectTrigger data-ocid="share.area_select">
-                <SelectValue placeholder="Shehar chuniye..." />
+                <SelectValue placeholder="Select your city..." />
               </SelectTrigger>
               <SelectContent>
                 {CITIES.map((c) => (
@@ -163,7 +163,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
             </Select>
             {area === "Other" && (
               <Input
-                placeholder="Apna shehar likhiye"
+                placeholder="Enter your city"
                 value={customArea}
                 onChange={(e) => setCustomArea(e.target.value)}
                 className="mt-1"
@@ -177,7 +177,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
               htmlFor="share-pin"
               className="flex items-center gap-1.5 text-sm font-medium"
             >
-              <Lock className="w-3.5 h-3.5" /> 4-Digit PIN (Delete ke liye)
+              <Lock className="w-3.5 h-3.5" /> 4-Digit PIN (for deletion)
             </Label>
             <Input
               id="share-pin"
@@ -193,7 +193,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
               required
             />
             <p className="text-xs text-muted-foreground">
-              Ye PIN yaad rakhna — baad mein delete karne ke kaam aayega
+              Remember this PIN — you will need it to delete your entry later
             </p>
           </div>
 
@@ -206,7 +206,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
               className="flex-1 rounded-full"
               onClick={() => onOpenChange(false)}
             >
-              Ruk Jao
+              Cancel
             </Button>
             <Button
               type="submit"
@@ -217,7 +217,7 @@ export default function ShareModal({ open, onOpenChange }: Props) {
               {isPending ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-2" />
               ) : null}
-              {isPending ? "Share ho raha hai..." : "Share Karo! 🚀"}
+              {isPending ? "Sharing..." : "Share! 🚀"}
             </Button>
           </div>
         </form>
